@@ -1,0 +1,51 @@
+version: '3.1'
+services:
+  nginx:
+    container_name: nginx
+    build: docker/nginx
+    command: nginx -g "daemon off;"
+    links:
+      - php
+    ports:
+      - "80:80"
+    volumes:
+      - ./src/public:/var/www/public:delegated
+  php:
+    container_name: php
+    build: docker/php
+    volumes:
+      - ./src:/var/www:delegated
+    working_dir: /var/www
+    command: php-fpm
+    ports:
+      - "9000:9000"
+    env_file:
+      - variables.env
+    links:
+      - mailhog
+  memcached:
+    image: memcached:1.5-alpine
+    ports:
+      - "11211:11211"
+    restart: always
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_DATABASE: "forge"
+    ports:
+      - "3306:3306"
+    restart: always
+  redis:
+    image: redis:5.0-alpine
+    ports:
+      - "6379:6379"
+    restart: always
+  mailhog:
+    container_name: mailhog
+    image: mailhog/mailhog
+    restart: always
+    ports:
+      - "1025:1025"
+      - "8025:8025"
