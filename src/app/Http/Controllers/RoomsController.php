@@ -52,4 +52,48 @@ class RoomsController extends Controller
     {
         return (new RoomResource(Room::where('id', $roomId)->firstOrFail()));
     }
+
+    /**
+     * @OA\Post(
+     *     path="/api/rooms",
+     *     tags={"rooms.general"},
+     *     summary="Create new room",
+     *     description="",
+     *     operationId="rooms.store",
+     *     deprecated=false,
+     *     @OA\Response(
+     *         response=201,
+     *         description="Successful operation",
+     *         @OA\MediaType(mediaType="application/vnd.api+json", @OA\Schema(ref="#/components/schemas/RoomGET"))
+     *     ),
+     *     @OA\Response(
+     *      response=404,
+     *      description="Not Found"
+     *     ),
+     *     @OA\Response(
+     *      response=405,
+     *      description="Method not allowed"
+     *     ),
+     *     @OA\Response(
+     *      response=500,
+     *      description="Server error"
+     *     ),
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(mediaType="application/vnd.api+json", @OA\Schema(ref="#/components/schemas/RoomPOST"))
+     *     ),
+     * )
+     */
+
+    /**
+     * @param Request $request
+     * @return RoomResource
+     */
+    public function store(Request $request): RoomResource
+    {
+        $room = new Room($request->json('data.attributes'));
+        $room->save();
+
+        return new RoomResource($room);
+    }
 }

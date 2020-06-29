@@ -25,3 +25,11 @@ Route::get(
         'as' => 'rooms.show',
     ]
 );
+
+Route::post(
+    '/rooms',
+    [
+        'uses' => 'RoomsController@store',
+        'as' => 'rooms.store',
+    ]
+);

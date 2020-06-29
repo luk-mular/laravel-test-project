@@ -22,5 +22,14 @@ use Illuminate\Support\Carbon;
  */
 class Room extends Model
 {
-
+    /**
+     * Setup fillable attributes.
+     * @var string[]
+     */
+    public $fillable = [
+        'type',
+        'number',
+        'floor',
+        'price_default'
+    ];
 }
