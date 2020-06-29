@@ -15,6 +15,35 @@ use Illuminate\Http\Request;
 class RoomsController extends Controller
 {
     /**
+     * @OA\Get(
+     *     path="/api/rooms/{roomId}",
+     *     tags={"rooms.general"},
+     *     summary="Get details of a room",
+     *     description="",
+     *     operationId="rooms.show",
+     *     deprecated=false,
+     *      @OA\Parameter(name="roomId", in="path", required=true, @OA\Schema(type="integer", format="int64")),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\MediaType(mediaType="application/vnd.api+json", @OA\Schema(ref="#/components/schemas/RoomGET"))
+     *     ),
+     *     @OA\Response(
+     *      response=404,
+     *      description="Not Found"
+     *     ),
+     *     @OA\Response(
+     *      response=405,
+     *      description="Method not allowed"
+     *     ),
+     *     @OA\Response(
+     *      response=500,
+     *      description="Server error"
+     *     ),
+     * )
+     */
+
+    /**
      * @param Request $request
      * @param string $roomId
      * @return RoomResource

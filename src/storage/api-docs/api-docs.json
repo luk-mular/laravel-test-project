@@ -1,0 +1,178 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Larave Test Project",
+        "description": "",
+        "termsOfService": "",
+        "contact": {
+            "email": "contact@example.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost",
+            "description": "Laravel test project server."
+        }
+    ],
+    "paths": {
+        "/api/rooms/{roomId}": {
+            "get": {
+                "tags": [
+                    "rooms.general"
+                ],
+                "summary": "Get details of a room",
+                "description": "",
+                "operationId": "rooms.show",
+                "parameters": [
+                    {
+                        "name": "roomId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RoomGET"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "405": {
+                        "description": "Method not allowed"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "deprecated": false
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "RoomGETAttributes": {
+                "required": [
+                    "type",
+                    "number",
+                    "floor",
+                    "price_default",
+                    "created_at",
+                    "updated_at"
+                ],
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "superior",
+                            "executive",
+                            "apartament"
+                        ]
+                    },
+                    "number": {
+                        "type": "string",
+                        "maxLength": 10,
+                        "minLength": 3,
+                        "example": "201"
+                    },
+                    "floor": {
+                        "type": "string",
+                        "enum": [
+                            "2",
+                            "3",
+                            "4"
+                        ]
+                    },
+                    "price_default": {
+                        "type": "number",
+                        "format": "float",
+                        "example": "200.00"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "Y-m-d H:i:s",
+                        "example": "2020-01-01 11:55:00"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "Y-m-d H:i:s",
+                        "example": "2020-01-01 11:55:00"
+                    }
+                },
+                "type": "object"
+            },
+            "RoomGETDataItemLinks": {
+                "required": [
+                    "self"
+                ],
+                "properties": {
+                    "self": {
+                        "type": "string",
+                        "example": "http://localhost/api/rooms/1"
+                    }
+                },
+                "type": "object"
+            },
+            "RoomGETDataItem": {
+                "required": [
+                    "id",
+                    "type",
+                    "attributes",
+                    "links"
+                ],
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "example": "rooms"
+                    },
+                    "id": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/RoomGETAttributes"
+                    },
+                    "links": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/RoomGETDataItemLinks"
+                    }
+                },
+                "type": "object"
+            },
+            "RoomGET": {
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/RoomGETDataItem"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "rooms.general",
+            "description": "Everything about hotel rooms."
+        }
+    ]
+}
