@@ -20,6 +20,49 @@
         }
     ],
     "paths": {
+        "/api/guests/{guestId}": {
+            "get": {
+                "tags": [
+                    "guests.general"
+                ],
+                "summary": "Get details of a guest.",
+                "description": "",
+                "operationId": "guests.show",
+                "parameters": [
+                    {
+                        "name": "guestId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GuestGET"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "405": {
+                        "description": "Method not allowed"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "/api/rooms/{roomId}": {
             "get": {
                 "tags": [
@@ -108,6 +151,117 @@
     },
     "components": {
         "schemas": {
+            "GuestGETAttributes": {
+                "required": [
+                    "id_number",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "city",
+                    "country",
+                    "created_at",
+                    "updated_at"
+                ],
+                "properties": {
+                    "id_number": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "minLength": 6,
+                        "example": "ABS123456"
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "minLength": 3,
+                        "example": "John"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "minLength": 3,
+                        "example": "Doe"
+                    },
+                    "email": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "example": "john.doe@example.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "minLength": 9,
+                        "example": "+48710072772"
+                    },
+                    "country": {
+                        "maxLength": 2,
+                        "minLength": 2,
+                        "example": "PL"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "Y-m-d H:i:s",
+                        "example": "2020-01-01 11:55:00"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "Y-m-d H:i:s",
+                        "example": "2020-01-01 11:55:00"
+                    }
+                },
+                "type": "object"
+            },
+            "GuestGETDataItemLinks": {
+                "required": [
+                    "self"
+                ],
+                "properties": {
+                    "self": {
+                        "type": "string",
+                        "example": "http://localhost/api/Guests/1"
+                    }
+                },
+                "type": "object"
+            },
+            "GuestGETDataItem": {
+                "required": [
+                    "id",
+                    "type",
+                    "attributes",
+                    "links"
+                ],
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "example": "Guests"
+                    },
+                    "id": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/GuestGETAttributes"
+                    },
+                    "links": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/GuestGETDataItemLinks"
+                    }
+                },
+                "type": "object"
+            },
+            "GuestGET": {
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/GuestGETDataItem"
+                    }
+                },
+                "type": "object"
+            },
             "RoomGETAttributes": {
                 "required": [
                     "type",
@@ -282,6 +436,10 @@
         {
             "name": "rooms.general",
             "description": "Everything about hotel rooms."
+        },
+        {
+            "name": "guests.general",
+            "description": "Everything about hotel guests."
         }
     ]
 }

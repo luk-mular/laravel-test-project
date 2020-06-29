@@ -18,6 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+/*
+ * ****** ROOMS **********
+ */
 Route::get(
     '/rooms/{roomId}',
     [
@@ -31,5 +34,16 @@ Route::post(
     [
         'uses' => 'RoomsController@store',
         'as' => 'rooms.store',
+    ]
+);
+
+/*
+ * ****** GUESTS **********
+ */
+Route::get(
+    '/guests/{guestId}',
+    [
+        'uses' => 'GuestsController@show',
+        'as' => 'guests.show',
     ]
 );
