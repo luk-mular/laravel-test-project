@@ -4,7 +4,7 @@
  * @OA\Info(
  *     description="",
  *     version="1.0.0",
- *     title="Larave Test Project",
+ *     title="Laravel Test Project",
  *     termsOfService="",
  *     @OA\Contact(
  *         email="contact@example.com"

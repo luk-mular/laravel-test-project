@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Larave Test Project",
+        "title": "Laravel Test Project",
         "description": "",
         "termsOfService": "",
         "contact": {
