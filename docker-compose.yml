@@ -36,6 +36,8 @@ services:
       MYSQL_DATABASE: "laravel"
     ports:
       - "3306:3306"
+    volumes:
+      - mysql_persist:/var/lib/mysql
   mysql-testing:
     image: mysql:5.7
     tmpfs:
@@ -60,3 +62,5 @@ services:
     ports:
       - "1025:1025"
       - "8025:8025"
+volumes:
+  mysql_persist:
