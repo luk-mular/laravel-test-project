@@ -33,9 +33,20 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
       MYSQL_ROOT_PASSWORD: ""
-      MYSQL_DATABASE: "forge"
+      MYSQL_DATABASE: "laravel"
     ports:
       - "3306:3306"
+  mysql-testing:
+    image: mysql:5.7
+    tmpfs:
+      - /var/lib/mysql/:rw,noexec,nosuid,size=600m
+      - /tmp/:rw,noexec,nosuid,size=50m
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_DATABASE: "laravel"
+    ports:
+      - "3307:3306"
     restart: always
   redis:
     image: redis:5.0-alpine
