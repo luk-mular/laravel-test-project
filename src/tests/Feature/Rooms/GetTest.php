@@ -49,7 +49,9 @@ class GetTest extends TestCase
                             'type' => 'superior',
                             'number' => '201',
                             'floor' => '2',
-                            'price_default' => '200.00'
+                            'price_default' => '200.00',
+                            'created_at' => '2019-01-01 20:00:00',
+                            'updated_at' => '2019-01-01 20:00:00',
                         ],
                         'links' => [
                             'self' => 'http://localhost/api/rooms/' . $room->id

@@ -32,10 +32,12 @@ class RoomResource extends JsonResource
             'type' => 'rooms',
             'id' => (string)$this->id,
             'attributes' => [
-                'type' => $this->type,
-                'number' => $this->number,
-                'floor' => $this->floor,
-                'price_default' => $this->price_default
+                'type' => (string)$this->type,
+                'number' => (string)$this->number,
+                'floor' => (string)$this->floor,
+                'price_default' => $this->price_default,
+                'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+                'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
             ],
             'links' => [
                 'self' => route('rooms.show', $this->id)
