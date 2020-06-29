@@ -63,6 +63,49 @@
                 "deprecated": false
             }
         },
+        "/api/reservations/{reservationId}": {
+            "get": {
+                "tags": [
+                    "reservations.general"
+                ],
+                "summary": "Get details of a reservation.",
+                "description": "",
+                "operationId": "reservations.show",
+                "parameters": [
+                    {
+                        "name": "reservationId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReservationGET"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "405": {
+                        "description": "Method not allowed"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "/api/rooms/{roomId}": {
             "get": {
                 "tags": [
@@ -262,6 +305,168 @@
                 },
                 "type": "object"
             },
+            "ReservationGETAttributes": {
+                "required": [
+                    "from",
+                    "to",
+                    "adults_amount",
+                    "children_amount",
+                    "infants_amount",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "notes",
+                    "created_at",
+                    "updated_at"
+                ],
+                "properties": {
+                    "from": {
+                        "type": "string",
+                        "format": "Y-m-d",
+                        "example": "2020-01-01"
+                    },
+                    "to": {
+                        "type": "string",
+                        "format": "Y-m-d",
+                        "example": "2020-01-03"
+                    },
+                    "adults_amount": {
+                        "type": "number",
+                        "format": "int32",
+                        "maximum": 99,
+                        "minimum": 1,
+                        "example": "2"
+                    },
+                    "children_amount": {
+                        "type": "number",
+                        "format": "int32",
+                        "maximum": 99,
+                        "minimum": 1,
+                        "example": "0"
+                    },
+                    "infants_amount": {
+                        "type": "number",
+                        "format": "int32",
+                        "maximum": 99,
+                        "minimum": 1,
+                        "example": "0"
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "minLength": 3,
+                        "example": "John"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "minLength": 3,
+                        "example": "Doe"
+                    },
+                    "email": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "example": "john.doe@example.com"
+                    },
+                    "notes": {
+                        "type": "string",
+                        "maxLength": 65535,
+                        "minLength": 0,
+                        "example": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "​pending​",
+                            "​confirmed​",
+                            "​cancelled​",
+                            "​completed​",
+                            "​overdue"
+                        ]
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "Y-m-d H:i:s",
+                        "example": "2020-01-01 11:55:00"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "Y-m-d H:i:s",
+                        "example": "2020-01-01 11:55:00"
+                    }
+                },
+                "type": "object"
+            },
+            "ReservationGETDataItemLinks": {
+                "required": [
+                    "self"
+                ],
+                "properties": {
+                    "self": {
+                        "type": "string",
+                        "example": "http://localhost/api/reservations/1"
+                    }
+                },
+                "type": "object"
+            },
+            "ReservationGETRelationships": {
+                "required": [
+                    "room"
+                ],
+                "properties": {
+                    "room": {
+                        "description": "",
+                        "type": "object",
+                        "$ref": "#/components/schemas/RoomRelatedSingleOutput"
+                    }
+                },
+                "type": "object"
+            },
+            "ReservationGETDataItem": {
+                "required": [
+                    "id",
+                    "type",
+                    "attributes",
+                    "relationships",
+                    "links"
+                ],
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "example": "reservations"
+                    },
+                    "id": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/ReservationGETAttributes"
+                    },
+                    "relationships": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/ReservationGETRelationships"
+                    },
+                    "links": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/ReservationGETDataItemLinks"
+                    }
+                },
+                "type": "object"
+            },
+            "ReservationGET": {
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/ReservationGETDataItem"
+                    }
+                },
+                "type": "object"
+            },
             "RoomGETAttributes": {
                 "required": [
                     "type",
@@ -363,6 +568,51 @@
                 },
                 "type": "object"
             },
+            "RoomRelatedDataObject": {
+                "required": [
+                    "id",
+                    "type"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "rooms"
+                    }
+                },
+                "type": "object"
+            },
+            "RoomRelatedLinkObject": {
+                "required": [
+                    "related"
+                ],
+                "properties": {
+                    "related": {
+                        "type": "string",
+                        "example": "http://localhost/api/rooms/1"
+                    }
+                },
+                "type": "object"
+            },
+            "RoomRelatedSingleOutput": {
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "links": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/RoomRelatedLinkObject"
+                    },
+                    "data": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/RoomRelatedDataObject"
+                    }
+                },
+                "type": "object"
+            },
             "RoomPOSTAttributes": {
                 "required": [
                     "type",
@@ -440,6 +690,10 @@
         {
             "name": "guests.general",
             "description": "Everything about hotel guests."
+        },
+        {
+            "name": "reservations.general",
+            "description": "Everything about hotel reservations."
         }
     ]
 }

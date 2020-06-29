@@ -47,3 +47,15 @@ Route::get(
         'as' => 'guests.show',
     ]
 );
+
+
+/*
+ * ****** RESERVATIONS ****
+ */
+Route::get(
+    '/reservations/{reservationId}',
+    [
+        'uses' => 'ReservationsController@show',
+        'as' => 'reservations.show',
+    ]
+);

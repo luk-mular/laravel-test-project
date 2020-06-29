@@ -35,3 +35,28 @@
  *  @OA\Property(property="data", type="object", ref="#/components/schemas/RoomGETDataItem"   ),
  * )
  **/
+
+/**
+ * @OA\Schema(schema="RoomRelatedDataObject", required={"id", "type"},
+ *
+ *  @OA\Property(property="id", type="string", example="1"),
+ *  @OA\Property(property="type", type="string", example="rooms"),
+ * )
+ */
+
+/**
+ * @OA\Schema(schema="RoomRelatedLinkObject", required={"related"},
+ *
+ *  @OA\Property(property="related", type="string", example="http://localhost/api/rooms/1"),
+ * )
+ */
+
+/**
+
+/**
+ * @OA\Schema(schema="RoomRelatedSingleOutput", required={"data"},
+ *
+ *  @OA\Property(property="links", type="object", ref="#/components/schemas/RoomRelatedLinkObject"   ),
+ *  @OA\Property(property="data", type="object", ref="#/components/schemas/RoomRelatedDataObject"   ),
+ * )
+ */

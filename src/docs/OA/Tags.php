@@ -13,3 +13,11 @@
  *     description="Everything about hotel guests.",
  * )
  */
+
+
+/**
+ * @OA\Tag(
+ *     name="reservations.general",
+ *     description="Everything about hotel reservations.",
+ * )
+ */
