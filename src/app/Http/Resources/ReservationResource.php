@@ -38,12 +38,9 @@ class ReservationResource extends JsonResource
      */
     public function toArray($request)
     {
-        $roomRelationship = [];
+        $relatedRoomData = null;
         if ($this->room_id) {
-            $roomRelationship['links'] = [
-                'related' => route('reservations.room.show', $this->id)
-            ];
-            $roomRelationship['data'] = [
+            $relatedRoomData = [
                 'id' => (string)$this->room_id,
                 'type' => 'rooms',
             ];
@@ -68,7 +65,12 @@ class ReservationResource extends JsonResource
                 'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
             ],
             'relationships' => [
-                'room' => $roomRelationship
+                'room' => [
+                    'links' => [
+                        'related' => route('reservations.room.show', $this->id),
+                    ],
+                    'data' => $relatedRoomData
+                ]
             ],
             'links' => [
                 'self' => route('reservations.show', $this->id)
