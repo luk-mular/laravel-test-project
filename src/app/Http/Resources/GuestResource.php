@@ -7,8 +7,6 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Carbon;
 
-use function GuzzleHttp\Psr7\str;
-
 /**
  * Class GuestResource
  * @package App\Http\Resources

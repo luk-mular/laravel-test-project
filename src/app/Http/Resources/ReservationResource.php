@@ -41,7 +41,7 @@ class ReservationResource extends JsonResource
         $roomRelationship = [];
         if ($this->room_id) {
             $roomRelationship['links'] = [
-                'related' =>route('rooms.show', $this->room_id)
+                'related' => route('rooms.show', $this->room_id)
             ];
             $roomRelationship['data'] = [
                 'id' => (string)$this->room_id,

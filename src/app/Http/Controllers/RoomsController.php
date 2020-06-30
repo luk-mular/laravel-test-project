@@ -50,7 +50,7 @@ class RoomsController extends Controller
      */
     public function show(Request $request, string $roomId)
     {
-        return (new RoomResource(Room::where('id', $roomId)->firstOrFail()));
+        return new RoomResource(Room::where('id', $roomId)->firstOrFail());
     }
 
     /**
