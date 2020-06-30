@@ -111,7 +111,7 @@
                 "tags": [
                     "rooms.general"
                 ],
-                "summary": "Get details of a room",
+                "summary": "Get details of a room.",
                 "description": "",
                 "operationId": "rooms.show",
                 "parameters": [
@@ -154,7 +154,7 @@
                 "tags": [
                     "rooms.general"
                 ],
-                "summary": "Create new room",
+                "summary": "Create new room.",
                 "description": "",
                 "operationId": "rooms.store",
                 "requestBody": {

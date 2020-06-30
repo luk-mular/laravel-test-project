@@ -18,7 +18,7 @@ class RoomsController extends Controller
      * @OA\Get(
      *     path="/api/rooms/{roomId}",
      *     tags={"rooms.general"},
-     *     summary="Get details of a room",
+     *     summary="Get details of a room.",
      *     description="",
      *     operationId="rooms.show",
      *     deprecated=false,
@@ -57,7 +57,7 @@ class RoomsController extends Controller
      * @OA\Post(
      *     path="/api/rooms",
      *     tags={"rooms.general"},
-     *     summary="Create new room",
+     *     summary="Create new room.",
      *     description="",
      *     operationId="rooms.store",
      *     deprecated=false,
