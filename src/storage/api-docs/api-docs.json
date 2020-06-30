@@ -106,6 +106,49 @@
                 "deprecated": false
             }
         },
+        "/api/reservations/{reservationId}/room": {
+            "get": {
+                "tags": [
+                    "reservations.general"
+                ],
+                "summary": "Get details of related room.",
+                "description": "",
+                "operationId": "reservations.rooms.show",
+                "parameters": [
+                    {
+                        "name": "reservationId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RoomGET"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "405": {
+                        "description": "Method not allowed"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "/api/rooms/{roomId}": {
             "get": {
                 "tags": [
@@ -591,8 +634,7 @@
                 ],
                 "properties": {
                     "related": {
-                        "type": "string",
-                        "example": "http://localhost/api/rooms/1"
+                        "type": "string"
                     }
                 },
                 "type": "object"

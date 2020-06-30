@@ -59,3 +59,10 @@ Route::get(
         'as' => 'reservations.show',
     ]
 );
+Route::get(
+    '/reservations/{reservationId}/room',
+    [
+        'uses' => 'ReservationsController@room',
+        'as' => 'reservations.room.show',
+    ]
+);

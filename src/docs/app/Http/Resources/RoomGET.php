@@ -47,7 +47,7 @@
 /**
  * @OA\Schema(schema="RoomRelatedLinkObject", required={"related"},
  *
- *  @OA\Property(property="related", type="string", example="http://localhost/api/rooms/1"),
+ *  @OA\Property(property="related", type="string"),
  * )
  */
 

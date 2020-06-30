@@ -72,7 +72,7 @@ class GetTest extends TestCase
                             'room' =>
                                 [
                                     'links' => [
-                                        'related' => 'http://localhost/api/rooms/1'
+                                        'related' => 'http://localhost/api/reservations/1/room'
                                     ],
                                     'data' => [
                                         'id' => '1',

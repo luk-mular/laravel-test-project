@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 /**
@@ -22,6 +23,8 @@ use Illuminate\Support\Carbon;
  */
 class Room extends Model
 {
+    use SoftDeletes;
+
     /**
      * Setup fillable attributes.
      * @var string[]
