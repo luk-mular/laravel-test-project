@@ -17,7 +17,7 @@ class CreateRooms extends Migration
             'rooms',
             function (Blueprint $table) {
                 $table->id();
-                $table->enum('type', ['superior', 'executive', 'apartament']);
+                $table->enum('type', ['superior', 'executive', 'suite']);
                 $table->string('number', 10);
                 $table->enum('floor', ['2', '3', '4']);
                 $table->decimal('price_default', 12, 2);

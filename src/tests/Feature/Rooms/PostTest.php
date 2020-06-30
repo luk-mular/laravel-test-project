@@ -25,7 +25,7 @@ class PostTest extends TestCase
     {
         $expectedCreationDatetime = '2019-01-01 20:00:00';
         $expectedAttributes = [
-            'type' => 'apartament',
+            'type' => 'suite',
             'number' => '418',
             'floor' => '4',
             'price_default' => 666,

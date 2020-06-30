@@ -482,7 +482,7 @@
                         "enum": [
                             "superior",
                             "executive",
-                            "apartament"
+                            "suite"
                         ]
                     },
                     "number": {
@@ -626,7 +626,7 @@
                         "enum": [
                             "superior",
                             "executive",
-                            "apartament"
+                            "suite"
                         ]
                     },
                     "number": {
