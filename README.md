@@ -22,9 +22,10 @@ To install projects dependencies:
 composer install
 ```
 
-After installation one more step:
+After installation two more steps:
 ```shell script
 php artisan key:generate
+php artisan migrate --seed
 ```
 
 App is up and running (if you are running linux probably you have to still fix permissions on ```./src/storage directory```), you can go to your browser to [localhost](http://localhost)
