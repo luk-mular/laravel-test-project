@@ -47,7 +47,7 @@ class RoomSeeder extends \Illuminate\Database\Seeder
                     ],
                     [
                         'type' => 'superior',
-                        'number' => '203',
+                        'number' => '303',
                         'floor' => '3',
                         'price_default' => 200,
                     ],
@@ -82,15 +82,15 @@ class RoomSeeder extends \Illuminate\Database\Seeder
                 ],
                 '2019-01-13 10:36:01' => [
                     [
-                        'type' => 'executive',
+                        'type' => 'suite',
                         'number' => '403',
                         'floor' => '4',
                         'price_default' => 450,
                     ],
                 ],
-                '2019-01-13 10:35:27' => [
+                '2019-01-13 10:36:27' => [
                     [
-                        'type' => 'executive',
+                        'type' => 'suite',
                         'number' => '404',
                         'floor' => '4',
                         'price_default' => 450,
