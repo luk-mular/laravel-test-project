@@ -25,7 +25,7 @@ use Illuminate\Support\Carbon;
  * @property string $last_name
  * @property string|null $email
  * @property string|null $phone
- * @property string $notes
+ * @property string|null $notes
  * @property string $status
  * @property Carbon|null $deleted_at
  * @property Carbon $created_at
