@@ -34,7 +34,7 @@ class CreateTableReservations extends Migration
                     ->nullable();
                 $table->enum(
                     'status',
-                    ['pending​', '​confirmed​', '​cancelled​', '​completed​', '​overdue']
+                    ['pending', '​confirmed​', '​cancelled​', '​completed​', '​overdue']
                 )
                     ->default('pending');
                 $table->softDeletes();
