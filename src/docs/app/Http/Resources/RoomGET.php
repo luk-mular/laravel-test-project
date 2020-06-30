@@ -23,7 +23,7 @@
  * @OA\Schema(schema="RoomGETDataItem", required={ "id", "type", "attributes", "links" },
  *
  *  @OA\Property(property="type", type="string", example="rooms"),
- *  @OA\Property(property="id", type="string", example="1"),
+ *  @OA\Property(property="id", type="integer", format="int64", example="1"),
  *  @OA\Property(property="attributes", type="object", ref="#/components/schemas/RoomGETAttributes"   ),
  *  @OA\Property(property="links", type="object", ref="#/components/schemas/RoomGETDataItemLinks"   ),
  * )

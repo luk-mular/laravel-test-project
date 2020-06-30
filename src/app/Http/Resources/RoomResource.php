@@ -30,7 +30,7 @@ class RoomResource extends JsonResource
     {
         return [
             'type' => 'rooms',
-            'id' => (string)$this->id,
+            'id' => (int)$this->id,
             'attributes' => [
                 'type' => (string)$this->type,
                 'number' => (string)$this->number,

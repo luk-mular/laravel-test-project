@@ -25,7 +25,7 @@
  * @OA\Schema(schema="GuestGETDataItem", required={ "id", "type", "attributes", "links" },
  *
  *  @OA\Property(property="type", type="string", example="Guests"),
- *  @OA\Property(property="id", type="string", example="1"),
+ *  @OA\Property(property="id", type="integer", format="int64", example="1"),
  *  @OA\Property(property="attributes", type="object", ref="#/components/schemas/GuestGETAttributes"   ),
  *  @OA\Property(property="links", type="object", ref="#/components/schemas/GuestGETDataItemLinks"   ),
  * )

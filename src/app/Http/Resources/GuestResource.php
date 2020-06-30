@@ -34,7 +34,7 @@ class GuestResource extends JsonResource
     {
         return [
             'type' => 'guests',
-            'id' => $this->id,
+            'id' => (int)$this->id,
             'attributes' => [
                 'id_number' => (string)$this->id_number,
                 'first_name' => (string)$this->first_name,

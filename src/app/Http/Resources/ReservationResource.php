@@ -48,7 +48,7 @@ class ReservationResource extends JsonResource
 
         return [
             'type' => 'reservations',
-            'id' => (string)$this->id,
+            'id' => (int)$this->id,
             'attributes' => [
                 'from' => $this->from->format('Y-m-d'),
                 'to' => $this->to->format('Y-m-d'),

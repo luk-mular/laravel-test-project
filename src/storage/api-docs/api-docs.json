@@ -322,7 +322,8 @@
                         "example": "Guests"
                     },
                     "id": {
-                        "type": "string",
+                        "type": "integer",
+                        "format": "int64",
                         "example": "1"
                     },
                     "attributes": {
@@ -480,7 +481,8 @@
                         "example": "reservations"
                     },
                     "id": {
-                        "type": "string",
+                        "type": "integer",
+                        "format": "int64",
                         "example": "1"
                     },
                     "attributes": {
@@ -585,7 +587,8 @@
                         "example": "rooms"
                     },
                     "id": {
-                        "type": "string",
+                        "type": "integer",
+                        "format": "int64",
                         "example": "1"
                     },
                     "attributes": {

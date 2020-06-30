@@ -36,7 +36,7 @@
  * @OA\Schema(schema="ReservationGETDataItem", required={ "id", "type", "attributes", "relationships", "links" },
  *
  *  @OA\Property(property="type", type="string", example="reservations"),
- *  @OA\Property(property="id", type="string", example="1"),
+ *  @OA\Property(property="id", type="integer", format="int64", example="1"),
  *  @OA\Property(property="attributes", type="object", ref="#/components/schemas/ReservationGETAttributes"),
  *  @OA\Property(property="relationships", type="object", ref="#/components/schemas/ReservationGETRelationships"),
  *  @OA\Property(property="links", type="object", ref="#/components/schemas/ReservationGETDataItemLinks"),
