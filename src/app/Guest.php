@@ -15,8 +15,8 @@ use Illuminate\Support\Carbon;
  * @property int $id
  * @property string $id_number
  * @property string $first_name
- * @property string $email
- * @property string $phone
+ * @property string|null $email
+ * @property string|null $phone
  * @property string $city
  * @property string $country
  * @property Carbon|null $deleted_at
