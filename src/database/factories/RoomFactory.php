@@ -10,10 +10,22 @@ $factory->define(
     Room::class,
     function (Faker $faker): array {
         return [
-            'type' => 'superior',
-            'number' => '201',
-            'floor' => '2',
-            'price_default' => 200,
+            'type' => $faker->randomElement(
+                [
+                    'superior',
+                    'executive',
+                    'suite'
+                ]
+            ),
+            'number' => (string)$faker->numberBetween(200, 400),
+            'floor' => $faker->randomElement(
+                [
+                    '2',
+                    '3',
+                    '4'
+                ]
+            ),
+            'price_default' => $faker->randomFloat(2, 100, 1000),
         ];
     }
 );
