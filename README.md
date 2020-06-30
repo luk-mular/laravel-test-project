@@ -28,6 +28,12 @@ php artisan key:generate
 ```
 
 App is up and running (if you are running linux probably you have to still fix permissions on ```./src/storage directory```), you can go to your browser to [localhost](http://localhost)
+Changing permissions:
+```shell script
+chmod 777 ./src/storage
+for dir in ./src/storage; do chmod 777 "$dir"; done;
+for dir in ./src/storage/framework; do chmod 777 "$dir"; done;
+```
 
 Few things to know:
 - API documentation is based on [swagger-ui](https://swagger.io/tools/swagger-ui/) and [OpenApi](https://swagger.io/docs/specification/about/).
