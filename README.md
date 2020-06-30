@@ -39,5 +39,5 @@ Few things to know:
 - API documentation is based on [swagger-ui](https://swagger.io/tools/swagger-ui/) and [OpenApi](https://swagger.io/docs/specification/about/).
 - To generate docs run ```php artisan l5-swagger:generate``` from php container.
 - Swagger docs are generated from OA\ annotations stored in ```./src/docs``` and in comments in ```./src/app/Http/Controllers``` by library [zircote/swagger-php](http://zircote.github.io/swagger-php/).
-- To check if your code is nice and shiny and [PSR-12](https://www.php-fig.org/psr/psr-12/) run [```./ecs```](https://packagist.org/packages/symplify/easy-coding-standard) from container of ```docker-compose exec php ./ecs``` from root project directory from host (if there are any issues try running command with **--fix** option).
+- To check if your code is nice and shiny and [PSR-12](https://www.php-fig.org/psr/psr-12/) run [```./ecs```](https://packagist.org/packages/symplify/easy-coding-standard) from php container (if there are any issues try running command with **--fix** option).
 - Also there is [mailhog](https://github.com/mailhog/MailHog) setup for handling mail notification, you can access it [here](http://localhost:8025)
