@@ -66,3 +66,10 @@ Route::get(
         'as' => 'reservations.room.show',
     ]
 );
+Route::patch(
+    '/reservations/status',
+    [
+        'uses' => 'ReservationsController@status',
+        'as' => 'reservations.status.patch'
+    ]
+);

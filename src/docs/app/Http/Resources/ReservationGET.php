@@ -12,7 +12,7 @@
  *  @OA\Property(property="last_name", type="string", maxLength=100, example="Doe"),
  *  @OA\Property(property="email", type="string", minLength=3, maxLength=100, example="john.doe@example.com"),
  *  @OA\Property(property="notes", type="string", maxLength=65535, example="Lorem Ipsum is simply dummy text of the printing and typesetting industry."),
- *  @OA\Property(property="status", type="string", enum={"​pending​", "​confirmed​", "​cancelled​", "​completed​", "​overdue"}),
+ *  @OA\Property(property="status", type="string", enum={"pending", "confirmed", "cancelled", "completed", "overdue"}),
  *  @OA\Property(property="created_at", type="string", format="Y-m-d H:i:s", example="2020-01-01 11:55:00"),
  *  @OA\Property(property="updated_at", type="string", format="Y-m-d H:i:s", example="2020-01-01 11:55:00"),
  * )

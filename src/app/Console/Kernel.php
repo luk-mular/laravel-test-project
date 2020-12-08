@@ -26,6 +26,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
+        $schedule->command('reservation:status:overdue')->dailyAt('10:00');
         // $schedule->command('inspire')->hourly();
     }
 

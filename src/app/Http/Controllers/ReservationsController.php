@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\BusinessLogic\Reservation\Status\StatusEnum;
+use App\BusinessLogic\Reservation\Status\StatusMap;
 use App\Http\Resources\ReservationResource;
 use App\Http\Resources\RoomResource;
+use App\Http\Resources\ValidationErrorResource;
 use App\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * Class ReservationsController
@@ -104,5 +108,74 @@ class ReservationsController extends Controller
                 ->withTrashed()
                 ->firstOrFail()
         );
+    }
+
+    /**
+     * @OA\Patch (
+     *     path="/api/reservations/status",
+     *     tags={"reservations.status"},
+     *     summary="Sets reservation status",
+     *     description="",
+     *     operationId="reservations.status.patch",
+     *     deprecated=false,
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\MediaType(mediaType="application/vnd.api+json", @OA\Schema(ref="#/components/schemas/ReservationGET"))
+     *     ),
+     *     @OA\Response(
+     *      response=400,
+     *      description="Validation errors"
+     *     ),
+     *     @OA\Response(
+     *      response=404,
+     *      description="Not Found"
+     *     ),
+     *     @OA\Response(
+     *      response=405,
+     *      description="Method not allowed"
+     *     ),
+     *     @OA\Response(
+     *      response=500,
+     *      description="Server error"
+     *     ),
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(mediaType="application/vnd.api+json", @OA\Schema(ref="#/components/schemas/ReservationPATCH"))
+     *     ),
+     * )
+     */
+
+    /**
+     * Ustawia status rezerwacji
+     * @param Request $request
+     * @return ReservationResource|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \ReflectionException
+     */
+    public function status(Request $request)
+    {
+        $rules = [
+            'data.type' => 'required|in:reservations',
+            'data.attributes.status' => 'required',
+        ];
+        /** @var Reservation $reservation */
+        $reservation = Reservation::where('id', $request->json('data.id'))
+            ->first();
+        if ($reservation) {
+            $rules['data.attributes.status'] .= '|in:' . implode(
+                ',',
+                StatusMap::getValueTo($reservation->status, [])
+            );
+        } else {
+            $rules['data.attributes.status'] .= '|in:' . implode(',', StatusEnum::getConstants());
+        }
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return \response(new ValidationErrorResource($validator->getMessageBag()), 400);
+        }
+        $reservation->status = $request->json('data.attributes.status');
+        $reservation->save();
+
+        return new ReservationResource($reservation);
     }
 }

@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\BusinessLogic\Room\Floor\FloorEnum;
+use App\BusinessLogic\Room\Type\TypeEnum;
 use App\Http\Resources\RoomResource;
+use App\Http\Resources\ValidationErrorResource;
 use App\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * Class RoomsController
@@ -86,11 +90,26 @@ class RoomsController extends Controller
      */
 
     /**
+     * Adds a new room
+     *
      * @param Request $request
-     * @return RoomResource
+     * @return RoomResource|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \ReflectionException
      */
-    public function store(Request $request): RoomResource
+    public function store(Request $request)
     {
+        $rules = [
+            'data.type' => 'required|in:rooms',
+            'data.attributes.type' => 'required|in:' . implode(',', TypeEnum::getConstants()),
+            'data.attributes.number' => 'required|string|alpha_num|max:10',
+            'data.attributes.floor' => 'required|in:' . implode(',', FloorEnum::getConstants()),
+            'data.attributes.price_default' => 'required|numeric|between:0,99999.99',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return \response(new ValidationErrorResource($validator->getMessageBag()), 400);
+        }
+
         $room = new Room($request->json('data.attributes'));
         $room->save();
 

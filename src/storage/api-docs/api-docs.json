@@ -149,6 +149,51 @@
                 "deprecated": false
             }
         },
+        "/api/reservations/status": {
+            "patch": {
+                "tags": [
+                    "reservations.status"
+                ],
+                "summary": "Sets reservation status",
+                "description": "",
+                "operationId": "reservations.status.patch",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReservationPATCH"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReservationGET"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation errors"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "405": {
+                        "description": "Method not allowed"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "/api/rooms/{roomId}": {
             "get": {
                 "tags": [
@@ -417,11 +462,11 @@
                     "status": {
                         "type": "string",
                         "enum": [
-                            "​pending​",
-                            "​confirmed​",
-                            "​cancelled​",
-                            "​completed​",
-                            "​overdue"
+                            "pending",
+                            "confirmed",
+                            "cancelled",
+                            "completed",
+                            "overdue"
                         ]
                     },
                     "created_at": {
@@ -503,6 +548,59 @@
                     "data": {
                         "type": "object",
                         "$ref": "#/components/schemas/ReservationGETDataItem"
+                    }
+                },
+                "type": "object"
+            },
+            "ReservationPatchAttributes": {
+                "required": [
+                    "status"
+                ],
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "pending",
+                            "confirmed",
+                            "cancelled",
+                            "completed",
+                            "overdue"
+                        ],
+                        "example": "pending"
+                    }
+                },
+                "type": "object"
+            },
+            "ReservationPATCHDataItem": {
+                "required": [
+                    "type",
+                    "id",
+                    "attributes"
+                ],
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "example": "reservations"
+                    },
+                    "id": {
+                        "type": "int",
+                        "example": "1"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/ReservationPatchAttributes"
+                    }
+                },
+                "type": "object"
+            },
+            "ReservationPATCH": {
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/ReservationPATCHDataItem"
                     }
                 },
                 "type": "object"
